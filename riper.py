@@ -207,7 +207,7 @@ def update_check(v):
     updateSource = urllib.request.urlopen("https://mikfogames.000webhostapp.com/riper_version.txt")
     updateContents = str(updateSource.read())
 
-    updateContents = updateContents[1:-3]
+    updateContents = updateContents[2:-3]
     v = float(v)
     v_latest = int(updateContents)
     print("Checking for updates...")
