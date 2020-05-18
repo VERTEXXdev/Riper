@@ -204,7 +204,7 @@ def on_rm_error(func, path, exc_info):
 
 def update_check(v):
     import urllib.request
-    updateSource = urllib.request.urlopen("https://mikfogames.hostingerapp.com/Riper_version.txt")
+    updateSource = urllib.request.urlopen("https://mikfogames.000webhostapp.com/riper_version.txt")
     updateContents = str(updateSource.read())
 
     updateContents = updateContents[1:-3]
