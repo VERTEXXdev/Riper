@@ -196,12 +196,19 @@ def spam_emails():
     print("Spam complete!")
     main(logo)
 
-def update_check(v):
-    import urllib
-    updateSource = urllib.urlopen("https://mikfogames.hostingerapp.com/Riper_version.txt")
-    updateContents = updateSource.read()
+def on_rm_error(func, path, exc_info):
+    import stat
+    #from: https://stackoverflow.com/questions/4829043/how-to-remove-read-only-attrib-directory-with-python-in-windows
+    os.chmod(path, stat.S_IWRITE)
+    os.unlink(path)
 
-    v = int(v)
+def update_check(v):
+    import urllib.request
+    updateSource = urllib.request.urlopen("https://mikfogames.hostingerapp.com/Riper_version.txt")
+    updateContents = str(updateSource.read())
+
+    updateContents = updateContents[1:-3]
+    v = float(v)
     v_latest = int(updateContents)
     print("Checking for updates...")
 
@@ -209,8 +216,35 @@ def update_check(v):
         " UPDATE "
         print("Update available! Downloading...")
         for f in os.listdir(os.getcwd()):
-            os.remove(f)
+            if f.endswith("git"):
+                import shutil
+                from subprocess import call
+                tmp = os.path.join(dir, i)
+                # We want to unhide the .git folder before unlinking it.
+                while True:
+                    call(['attrib', '-H', tmp])
+                    break
+                shutil.rmtree(tmp, onerror=on_rm_error)
+            try:
+                try:
+                    os.remove(f)
+                except:
+                    pass
+            except:
+                try:
+                    os.rmdir(f)
+                except:
+                    os.chdir(f)
+                    for fi in os.listdir(os.getcwd()):
+                        os.remove(fi)
+                    os.chdir("..")
+                    os.rmdir(f)
+
+        time.sleep(1)
         os.system("git clone https://github.com/VERTEXXdev/Riper.git .")
+        open("start.py", "w+").write("""import os; import time; os.system("python riper.py");""")
+        os.system("python start.py")
+        quit()
     else:
         print("Riper is up-to-date!")
 
@@ -288,7 +322,7 @@ Discord: VERTEXX#5068
 print(logo)
 print(contact)
 
-update_check()
+update_check(version)
 
 if load_animation == True:
     timer = 0
