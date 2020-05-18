@@ -219,7 +219,7 @@ def update_check(v):
             if f.endswith("git"):
                 import shutil
                 from subprocess import call
-                tmp = os.path.join(dir, i)
+                tmp = os.path.join(os.getcwd(), f)
                 # We want to unhide the .git folder before unlinking it.
                 while True:
                     call(['attrib', '-H', tmp])
