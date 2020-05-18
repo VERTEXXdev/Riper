@@ -209,7 +209,7 @@ def update_check(v):
 
     updateContents = updateContents[2:-3]
     v = float(v)
-    v_latest = int(updateContents)
+    v_latest = float(updateContents)
     print("Checking for updates...")
 
     if v_latest > v:
