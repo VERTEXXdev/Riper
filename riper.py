@@ -199,6 +199,146 @@ def on_rm_error(func, path, exc_info):
     os.chmod(path, stat.S_IWRITE)
     os.unlink(path)
 
+def pw_crack(logo):
+    import hashlib
+    import sys
+    import time
+
+    # htc = "92eb5ffee6ae2fec3ad71c777531578f"
+
+    alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+    numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+    htc = input("MD5 Hash: ")
+
+    print("Started!")
+
+    crack = ""
+    cracked = False
+    start = time.time()
+    while True:
+        # cracking starts
+        if not cracked:
+            for a in range(int(len(alphabet))):
+                crack = alphabet[a]
+                print("1st letter: " + crack)
+                hashedGuess = hashlib.md5(bytes(crack, 'utf-8')).hexdigest()
+                
+                if htc == hashedGuess:
+                    cracked = True
+                    break
+                else:
+                    for b in range(int(len(alphabet))):
+                        crack = alphabet[a] + alphabet[b]
+                        # print(crack)
+                        hashedGuess = hashlib.md5(bytes(crack, 'utf-8')).hexdigest()
+                        
+                        if htc == hashedGuess:
+                            cracked = True
+                            break
+                        else:
+                            for c in range(int(len(alphabet))):
+                                crack = alphabet[a] + alphabet[b] + alphabet[c]
+                                # print(crack)
+                                hashedGuess = hashlib.md5(bytes(crack, 'utf-8')).hexdigest()
+                                
+                                if htc == hashedGuess:
+                                    cracked = True
+                                    break
+                                else:
+                                    for d in range(int(len(alphabet))):
+                                        crack = alphabet[a] + alphabet[b] + alphabet[c] + alphabet[d]
+                                        # print(crack)
+                                        hashedGuess = hashlib.md5(bytes(crack, 'utf-8')).hexdigest()
+                                        
+                                        if htc == hashedGuess:
+                                            cracked = True
+                                            break
+                                        else:
+                                            for e in range(int(len(alphabet))):
+                                                crack = alphabet[a] + alphabet[b] + alphabet[c] + alphabet[d]
+                                                crack = crack + alphabet[e]
+                                                # print(crack)
+                                                hashedGuess = hashlib.md5(bytes(crack, 'utf-8')).hexdigest()
+                                                
+                                                if htc == hashedGuess:
+                                                    cracked = True
+                                                    break
+                                                else:
+                                                    for f in range(int(len(alphabet))):
+                                                        crack = alphabet[a] + alphabet[b] + alphabet[c] + alphabet[d]
+                                                        crack = crack + alphabet[e] + alphabet[f]
+                                                        # print(crack)
+                                                        hashedGuess = hashlib.md5(bytes(crack, 'utf-8')).hexdigest()
+                                                        
+                                                        if htc == hashedGuess:
+                                                            cracked = True
+                                                            break
+                                                        else:
+                                                            for g in range(int(len(alphabet))):
+                                                                crack = alphabet[a] + alphabet[b] + alphabet[c] + alphabet[d]
+                                                                crack = crack + alphabet[e] + alphabet[f] + alphabet[g]
+                                                                # print(crack)
+                                                                hashedGuess = hashlib.md5(bytes(crack, 'utf-8')).hexdigest()
+
+                                                                if htc == hashedGuess:
+                                                                    cracked = True
+                                                                    break
+                                                                else:
+                                                                    for h in range(int(len(alphabet))):
+                                                                        crack = alphabet[a] + alphabet[b] + alphabet[c] + alphabet[d]
+                                                                        crack = crack + alphabet[e] + alphabet[f] + alphabet[g] + alphabet[h]
+                                                                        # print(crack)
+                                                                        hashedGuess = hashlib.md5(bytes(crack, 'utf-8')).hexdigest()
+                                                                        
+                                                                        if htc == hashedGuess:
+                                                                            cracked = True
+                                                                            break
+                                                                        else:
+                                                                            for i in range(int(len(alphabet))):
+                                                                                crack = alphabet[a] + alphabet[b] + alphabet[c] + alphabet[d]
+                                                                                crack = crack + alphabet[e] + alphabet[f] + alphabet[g] + alphabet[h]
+                                                                                crack = crack + alphabet[i]
+                                                                                # print(crack)
+                                                                                hashedGuess = hashlib.md5(bytes(crack, 'utf-8')).hexdigest()
+                                                                                if htc == hashedGuess:
+                                                                                    cracked = True
+                                                                                    break
+                                                                        if cracked == True:
+                                                                            break
+                                                                if cracked == True:
+                                                                    break
+                                                        if cracked == True:
+                                                            break
+                                                if cracked == True:
+                                                    break
+                                        if cracked == True:
+                                            break
+                                if cracked == True:
+                                    break
+                        if cracked == True:
+                            break
+                if cracked == True:
+                    break
+        """
+        if not cracked:
+            for c in range(int(len(alphabet))):
+                crack = alphabet[a] + alphabet[b] + alphabet[c]
+                print("Trying " + crack)
+                hashedGuess = hashlib.md5(bytes(crack, 'utf-8')).hexdigest()
+                if htc == hashedGuess:
+                    cracked = True
+                    break
+        """
+
+        break
+    print(int(time.time() - start))
+    if crack == "ZZZZZZZZZ":
+        print("I could not bruteforce the PW!")
+        quit()
+    print("Plain text: " + crack)
+    open("pw_cracked.txt", "w").write(crack)
+
 def update_check(v):
     import urllib.request
     updateSource = urllib.request.urlopen("https://mikfogames.000webhostapp.com/riper_version.txt")
@@ -324,6 +464,7 @@ def main(logo, contact):
     print("[1] Make a reverse TCP shell [IN BETA]")
     print("[2] Spam emails")
     print("[3] DOS [IN BETA]")
+    print("[4] Password Cracker [IN BETA]")
     
     print(" ")
 
@@ -344,6 +485,8 @@ def main(logo, contact):
         spam_emails()
     if choice == 3:
         start_dos(logo, contact)
+    if choice == 4:
+        pw_crack(logo)
     if choice == 98:
         print(contact)
         time.sleep(5)
