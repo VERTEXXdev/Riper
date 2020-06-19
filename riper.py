@@ -161,7 +161,7 @@ if __name__ == "__main__":
     f2.close()
     print("Done!")
     time.sleep(1)
-    main(logo)
+    return
 
 def spam_emails():
     email_from = input("Email to spam with: ")
@@ -191,7 +191,7 @@ def spam_emails():
 
     server.quit()
     print("Spam complete!")
-    main(logo)
+    return
 
 def on_rm_error(func, path, exc_info):
     import stat
@@ -304,6 +304,30 @@ def pw_crack(logo):
                                                                                 if htc == hashedGuess:
                                                                                     cracked = True
                                                                                     break
+                                                                                else:
+                                                                                    for j in range(int(len(numbers))):
+                                                                                        crack = alphabet[a] + alphabet[b] + alphabet[c] + alphabet[d]
+                                                                                        crack = crack + alphabet[e] + alphabet[f] + alphabet[g] + alphabet[h]
+                                                                                        crack = crack + alphabet[i] + str(numbers[j])
+                                                                                        # print(crack)
+                                                                                        hashedGuess = hashlib.md5(bytes(crack, 'utf-8')).hexdigest()
+                                                                                        if htc == hashedGuess:
+                                                                                            cracked = True
+                                                                                            break
+                                                                                        else:
+                                                                                            for k in range(int(len(numbers))):
+                                                                                                crack = alphabet[a] + alphabet[b] + alphabet[c] + alphabet[d]
+                                                                                                crack = crack + alphabet[e] + alphabet[f] + alphabet[g] + alphabet[h]
+                                                                                                crack = crack + alphabet[i] + str(numbers[j]) + str(numbers[k])
+                                                                                                print(crack)
+                                                                                                hashedGuess = hashlib.md5(bytes(crack, 'utf-8')).hexdigest()
+                                                                                                if htc == hashedGuess:
+                                                                                                    cracked = True
+                                                                                                    break
+                                                                                        if cracked == True:
+                                                                                            break
+                                                                                if cracked == True:
+                                                                                    break
                                                                         if cracked == True:
                                                                             break
                                                                 if cracked == True:
@@ -320,6 +344,8 @@ def pw_crack(logo):
                             break
                 if cracked == True:
                     break
+            if cracked == True:
+                break
         """
         if not cracked:
             for c in range(int(len(alphabet))):
@@ -335,11 +361,12 @@ def pw_crack(logo):
     print(int(time.time() - start))
     if crack == "ZZZZZZZZZ":
         print("I could not bruteforce the PW!")
-        quit()
+        return
     print("Plain text: " + crack)
     open("pw_cracked.txt", "w").write(crack)
 
 def update_check(v):
+    print("Checking for updates...")
     import urllib.request
     updateSource = urllib.request.urlopen("https://mikfogames.000webhostapp.com/riper_version.txt")
     updateContents = str(updateSource.read())
@@ -347,7 +374,6 @@ def update_check(v):
     updateContents = updateContents[2:-1]
     v = float(v)
     v_latest = float(updateContents)
-    print("Checking for updates...")
 
     if v_latest > v:
         " UPDATE "
@@ -456,6 +482,129 @@ Connection: keep-alive'''
     # except:
         # main(logo, contact)
 
+def ripergen():
+    def nitrogen():
+        links = """
+https://pastebin.com/raw/EXrVYGCv
+https://pastebin.com/raw/Ff3gDXjV
+https://pastebin.com/raw/gTfjP0Sp
+https://pastebin.com/raw/nAaHk5SS
+        """
+        links = links.split("\n")
+        return
+    def nitrosniper():
+        import asyncio
+        import json
+        import time
+        import traceback
+        from os import system
+        import random
+        from discord.ext import commands
+        import re, requests
+        import datetime
+        import platform
+
+        BOT_PREFIX = '.'
+
+        client = commands.Bot(command_prefix=BOT_PREFIX)
+
+        codeRegex = re.compile("(discord.com/gifts/|discordapp.com/gifts/|discord.gift/)([a-zA-Z0-9]+)")
+
+        print("""
+
+        ██████╗░██╗██████╗░███████╗██████╗░░██████╗███╗░░██╗██╗██████╗░███████╗
+        ██╔══██╗██║██╔══██╗██╔════╝██╔══██╗██╔════╝████╗░██║██║██╔══██╗██╔════╝
+        ██████╔╝██║██████╔╝█████╗░░██████╔╝╚█████╗░██╔██╗██║██║██████╔╝█████╗░░
+        ██╔══██╗██║██╔═══╝░██╔══╝░░██╔══██╗░╚═══██╗██║╚████║██║██╔═══╝░██╔══╝░░
+        ██║░░██║██║██║░░░░░███████╗██║░░██║██████╔╝██║░╚███║██║██║░░░░░███████╗
+        ╚═╝░░╚═╝╚═╝╚═╝░░░░░╚══════╝╚═╝░░╚═╝╚═════╝░╚═╝░░╚══╝╚═╝╚═╝░░░░░╚══════╝
+
+        Nitro Sniper!
+
+        USE THIS FOR YOU OWN RISK. SNIPERS ARE AGAINST DISCORD TOS!""")
+
+        client.remove_command("help")
+
+        TOKEN = input("Token: ")
+
+        print("Sniper will be up in 10 seconds...")
+
+        @client.event
+        async def on_message(message):
+            
+            if 1:
+                try:
+                    server = message.guild.name
+                except:
+                    server = "DM / Unknown"
+
+                if codeRegex.search(message.content):
+
+                    if 1:
+                        code = codeRegex.search(message.content).group(2)
+                        x = datetime.datetime.now()
+                        if len(code) < 16:
+                            print("--------------------------")
+                            print("Auto-Detected fake Discord Nitro Code")
+                            print("Time: " + x.strftime("%H:%M:%S"))
+                            print("Server: " + server)
+                            print("Author: " + str(message.author))
+                            print("Author ID: " + str(message.author.id))
+                            print("Message: " + message.content)
+                        else:
+                            r = requests
+                            result = r.post('https://discordapp.com/api/v6/entitlements/gift-codes/' + code + '/redeem',
+                                            json={"channel_id": str(message.channel.id)}, headers={'authorization': TOKEN}).text
+
+                            print("--------------------------")
+                            print("Sniped Nitro!")
+                            print("Time: " + x.strftime("%H:%M:%S"))
+                            print("Server: " + server)
+                            print("Author: " + str(message.author))
+                            print("Author ID: " + str(message.author.id))
+                            print("Message: " + message.content)
+                            if 'This gift has been redeemed already.' in result:
+                                print("Code has been already redeemed.")
+                            elif 'nitro' in result:
+                                print("NITRO ACTIVATED!")
+                            elif 'Unknown Gift Code' in result:
+                                print("Invalid Code.")
+
+        client.run(TOKEN, bot=False)
+
+
+    print("""
+    
+██████╗░██╗██████╗░███████╗██████╗░  ░██████╗░███████╗███╗░░██╗
+██╔══██╗██║██╔══██╗██╔════╝██╔══██╗  ██╔════╝░██╔════╝████╗░██║
+██████╔╝██║██████╔╝█████╗░░██████╔╝  ██║░░██╗░█████╗░░██╔██╗██║
+██╔══██╗██║██╔═══╝░██╔══╝░░██╔══██╗  ██║░░╚██╗██╔══╝░░██║╚████║
+██║░░██║██║██║░░░░░███████╗██║░░██║  ╚██████╔╝███████╗██║░╚███║
+╚═╝░░╚═╝╚═╝╚═╝░░░░░╚══════╝╚═╝░░╚═╝  ░╚═════╝░╚══════╝╚═╝░░╚══╝
+    
+EASTER EGG IN RIPER
+DEVELOPED BY VERTEXX
+-------------------------------------------------------------------
+    """)
+
+    print("""------------------------------
+[1] Nitro GEN [!!! NOT WORKING !!!]
+[2] Nitro Sniper [IN BETA]
+
+[98] Back to Riper
+[99] Exit
+    """)
+    cmd = input("RiperGen > ")
+    if cmd == "1":
+        nitrogen()
+    if cmd == "2":
+        nitrosniper()
+    if cmd == "98":
+        return
+    if cmd == "99":
+        exit()
+    else:
+        ripergen()
 
 def main(logo, contact):
     os.system("cls")
@@ -475,19 +624,20 @@ def main(logo, contact):
     """)
 
     print("What would you like?")
-    choice = input("RiperGen > ")
-    choice = int(choice)
-    if choice == 99:
+    choice = input("Riper > ")
+    if choice == "99":
         exit()
-    if choice == 1:
+    if choice == "1":
         tcp()
-    if choice == 2:
+    if choice == "2":
         spam_emails()
-    if choice == 3:
+    if choice == "3":
         start_dos(logo, contact)
-    if choice == 4:
+    if choice == "4":
         pw_crack(logo)
-    if choice == 98:
+    if choice == "1574":
+        ripergen()
+    if choice == "98":
         print(contact)
         time.sleep(5)
         main(logo, contact)
@@ -507,8 +657,9 @@ If you dont use this tool for educational purposes, you are using this tool for 
 
 Requirements:
 Installed git
+Python req install: pip install requests discord
 
-Do you understand and accept this ToS, and have Git installed? (y/n)
+Do you understand and accept this ToS, and have requirements installed? (y/n)
 """)
 yn = input("(y/n) ")
 if yn.lower() == "y" or yn.lower() == "yes":
