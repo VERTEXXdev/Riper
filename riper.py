@@ -3,7 +3,7 @@ import sys
 import time
 
 "------------------------"
-version = "0.3"
+version = "0.4"
 load_animation = True
 "-----------------------"
 
